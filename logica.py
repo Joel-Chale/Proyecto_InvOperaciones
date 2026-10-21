@@ -317,7 +317,7 @@ def resolver_esquina_noroeste(problema):
     fila = 0
     columna = 0
     num_paso = 1
-    num_asignaciones = 0
+    hay_asignacion_cero = False
 
     while fila < m and columna < n:
         of_disp = oferta[fila]
@@ -326,7 +326,8 @@ def resolver_esquina_noroeste(problema):
         # Cantidad a asignar = mínimo entre oferta disponible y demanda pendiente
         cantidad = min(of_disp, dem_pend)
         asignaciones[fila][columna] += cantidad
-        num_asignaciones += 1
+        if cantidad == Decimal('0'):
+            hay_asignacion_cero = True
 
         of_rest = of_disp - cantidad
         dem_rest = dem_pend - cantidad
@@ -375,7 +376,6 @@ def resolver_esquina_noroeste(problema):
             break
         elif es_empate:
             fila += 1
-            columna += 1
         elif of_rest == Decimal('0'):
             fila += 1
         else:
@@ -383,7 +383,7 @@ def resolver_esquina_noroeste(problema):
 
     # Verificar degeneración: se espera m+n-1 asignaciones en solución básica factible
     esperadas = m + n - 1
-    es_degenerado = num_asignaciones < esperadas
+    es_degenerado = hay_asignacion_cero
 
     return asignaciones, pasos, es_degenerado
 
