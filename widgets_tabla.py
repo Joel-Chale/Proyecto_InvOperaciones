@@ -48,7 +48,6 @@ class TablaCostos(tk.Frame):
         self._lbl_total_demanda = None
         self._lbl_diferencia = None
         self._lbl_estado = None
-        self._lbl_celda_total = None
 
         self._construir()
 
@@ -203,14 +202,14 @@ class TablaCostos(tk.Frame):
                 entry_d.grid(row=fila_dem, column=j + 1, sticky='nsew', padx=1, pady=1)
                 var_d.trace_add('write', self._on_valor_cambiado)
 
-        # Celda esquina inferior derecha (Demanda \ Oferta)
-        self._lbl_celda_total = tk.Label(
-            self, text='',
-            font=FUENTE['pequena'], fg='white',
+        # Celda total (esquina inferior derecha)
+        mi_texto = f" {self.problema.total_de} \\ {self._lbl_total_oferta}"
+        tk.Label(
+            self, text=mi_texto,
+            font=FUENTE['celda'], fg='white',
             bg=COLOR['primario_oscuro'],
-            relief='flat', anchor='center', width=11
-        )
-        self._lbl_celda_total.grid(row=fila_dem, column=n + 1, sticky='nsew', padx=1, pady=1)
+            relief='flat', anchor='center', width=9
+        ).grid(row=fila_dem, column=n + 1, sticky='nsew', padx=1, pady=1)
 
         # ── Fila de resumen (totales, diferencia, estado) ────────────────
         fila_res = m + 3
@@ -332,8 +331,6 @@ class TablaCostos(tk.Frame):
             self._lbl_total_oferta.config(text=str_of)
             self._lbl_total_demanda.config(text=str_dem)
             self._lbl_diferencia.config(text=str_dif)
-            if self._lbl_celda_total:
-                self._lbl_celda_total.config(text=f"{str_dem} \\ {str_of}")
 
             if total_of == Decimal('0') and total_dem == Decimal('0'):
                 self._lbl_estado.config(text='', fg=COLOR['texto'])
@@ -578,15 +575,9 @@ class TablaAsignaciones(tk.Frame):
                 width=8, relief='flat', anchor='center'
             ).grid(row=fila_dem, column=j + 1, sticky='nsew', padx=1, pady=1)
 
-        # Esquina inferior derecha: Demanda \ Oferta
-        tot_dem = formatear_numero(p.demanda_total())
-        tot_of = formatear_numero(p.oferta_total())
-        texto_totales = f"{tot_dem} \\ {tot_of}"
-
         tk.Label(
-            self, text=texto_totales,
-            font=FUENTE['pequena'], fg='white',
-            bg=COLOR['primario_oscuro'], width=11, relief='flat', anchor='center'
+            self, text='',
+            bg=COLOR['primario_oscuro'], width=9, relief='flat'
         ).grid(row=fila_dem, column=n + 1, sticky='nsew', padx=1, pady=1)
 
         for col in range(n + 2):
