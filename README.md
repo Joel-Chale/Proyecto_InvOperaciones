@@ -1,11 +1,11 @@
-# 🚚 Método de la Esquina Noroeste
+#  Método de la Esquina Noroeste
 ## Investigación de Operaciones — Problemas de Transporte
 
 Aplicación gráfica moderna, intuitiva y completa para resolver problemas de transporte mediante el **Método de la Esquina Noroeste**, con explicación pedagógica paso a paso y comparador de **solución óptima de costo mínimo**.
 
 ---
 
-## ⚡ Ejecución rápida (Sin instalar Python)
+##  Ejecución rápida (Sin instalar Python)
 
 El programa cuenta con un ejecutable independiente compilado para Windows:
 
@@ -14,7 +14,7 @@ El programa cuenta con un ejecutable independiente compilado para Windows:
 
 ---
 
-## 💻 Requisitos para desarrolladores (Código fuente)
+##  Requisitos para desarrolladores (Código fuente)
 
 Si deseas ejecutar o modificar el código fuente en Python:
 - **Python 3.8 o superior** (probado y optimizado en Python 3.13)
@@ -32,7 +32,7 @@ python main.py
 
 ---
 
-## 📁 Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 transporte_io/
@@ -49,7 +49,7 @@ transporte_io/
 
 ---
 
-## 🚀 Cómo usar el programa
+##  Cómo usar el programa
 
 ### 1. Configurar dimensiones y datos
 * En la pestaña **"Datos del problema"**, define la cantidad de orígenes y destinos (o usa los botones `+ / -`).
@@ -74,7 +74,7 @@ transporte_io/
 * En la pestaña **"Resultados y costo"** encontrarás:
   * Tabla final de asignaciones completa con totales en formato `Demanda \ Oferta`.
   * Desglose de cada envío realizado y fórmula matemática expandida del costo total.
-  * **🎯 Evaluación de Optimalidad:** Compara el costo de la Esquina Noroeste con la **Solución Óptima Real de Costo Mínimo**. Si existe una distribución con menor costo, te indica el ahorro posible y te permite hacer clic en **"🔍 Ver Tabla de Asignaciones Óptimas"** para examinarla.
+  * ** Evaluación de Optimalidad:** Compara el costo de la Esquina Noroeste con la **Solución Óptima Real de Costo Mínimo**. Si existe una distribución con menor costo, te indica el ahorro posible y te permite hacer clic en **"🔍 Ver Tabla de Asignaciones Óptimas"** para examinarla.
 
 ---
 
@@ -82,20 +82,20 @@ transporte_io/
 
 | Herramienta | Descripción |
 |---|---|
-| **▶ RESOLVER EJERCICIO** | Resuelve el problema en 1 clic aplicando la Esquina Noroeste y balanceo automático. |
-| **⚖ Balancear** | Muestra el análisis previo de oferta total vs. demanda total y tablas balanceadas. |
-| **🎯 Evaluación de Optimalidad** | Verifica si la solución inicial obtenida ya es óptima o cuánto puede reducirse el costo. |
-| **🔍 Ver Asignación Óptima** | Despliega en ventana emergente la matriz de distribución óptima absoluta. |
-| **⭐ Cargar Ejemplo** | Carga al instante un problema de transporte clásico balanceado listo para probar. |
-| **🎲 Datos Aleatorios** | Ventana emergente con configuración de rangos y botón fijo `🎲 GENERAR DATOS`. |
-| **🧹 Limpiar Tabla** | Borra todos los valores numéricos ingresados pidiendo confirmación. |
-| **💾 Guardar / 📂 Abrir** | Almacena y recupera ejercicios completos en formato estructurado `.json`. |
-| **📤 Exportar TXT / CSV** | Genera reportes de texto detallados paso a paso o archivos CSV compatibles con Microsoft Excel. |
-| **❓ Ayuda** | Guía teórica y manual de usuario integrado en la aplicación. |
+| ** RESOLVER EJERCICIO** | Resuelve el problema en 1 clic aplicando la Esquina Noroeste y balanceo automático. |
+| ** Balancear** | Muestra el análisis previo de oferta total vs. demanda total y tablas balanceadas. |
+| ** Evaluación de Optimalidad** | Verifica si la solución inicial obtenida ya es óptima o cuánto puede reducirse el costo. |
+| ** Ver Asignación Óptima** | Despliega en ventana emergente la matriz de distribución óptima absoluta. |
+| ** Cargar Ejemplo** | Carga al instante un problema de transporte clásico balanceado listo para probar. |
+| ** Datos Aleatorios** | Ventana emergente con configuración de rangos y botón fijo `🎲 GENERAR DATOS`. |
+| ** Limpiar Tabla** | Borra todos los valores numéricos ingresados pidiendo confirmación. |
+| ** Guardar / 📂 Abrir** | Almacena y recupera ejercicios completos en formato estructurado `.json`. |
+| ** Exportar TXT / CSV** | Genera reportes de texto detallados paso a paso o archivos CSV compatibles con Microsoft Excel. |
+| ** Ayuda** | Guía teórica y manual de usuario integrado en la aplicación. |
 
 ---
 
-## 🎨 Código de colores en las tablas
+##  Código de colores en las tablas
 
 | Muestra visual | Color | Significado |
 |---|---|---|
@@ -107,9 +107,9 @@ transporte_io/
 
 ---
 
-## 📝 Ejemplo resuelto incluido
+##  Ejemplo resuelto incluido
 
-Al presionar el botón **"⭐ Cargar Ejemplo"** se carga el siguiente caso balanceado:
+Al presionar el botón **" Cargar Ejemplo"** se carga el siguiente caso balanceado:
 
 | Origen \ Destino | Ciudad 1 | Ciudad 2 | Ciudad 3 | Ciudad 4 | Oferta |
 |---|---|---|---|---|---|
