@@ -1382,47 +1382,68 @@ class AplicacionTransporte(tk.Tk):
         self._set_estado('Ejemplo cargado. Revise los datos y resuelva el ejercicio.')
 
     def _generar_aleatorio(self):
-        """Diálogo para generar datos aleatorios."""
+        """Diálogo moderno para generar datos aleatorios."""
         dialogo = tk.Toplevel(self)
         dialogo.title('Generar datos aleatorios')
-        dialogo.geometry('380x320')
-        dialogo.resizable(False, False)
+        dialogo.geometry('460x500')
+        dialogo.minsize(430, 470)
+        dialogo.resizable(True, True)
         dialogo.configure(bg=COLOR['panel'])
         dialogo.grab_set()
 
-        tk.Label(dialogo, text='Generador de datos aleatorios',
-                 font=FUENTE['subtitulo'], fg=COLOR['primario'],
-                 bg=COLOR['panel']).pack(pady=10)
+        # Encabezado
+        barra_tit = tk.Frame(dialogo, bg=COLOR['primario'], pady=8)
+        barra_tit.pack(fill='x')
+        tk.Label(
+            barra_tit, text='🎲 Generador de Datos Aleatorios',
+            font=FUENTE['subtitulo'], fg='white', bg=COLOR['primario']
+        ).pack()
 
-        campos = tk.Frame(dialogo, bg=COLOR['panel'])
-        campos.pack(padx=20, fill='x')
+        # ── BOTONES INFERIORES FIJOS (Siempre visibles al fondo) ─────────
+        frame_btns = tk.Frame(dialogo, bg=COLOR['panel'], pady=12, padx=20)
+        frame_btns.pack(side='bottom', fill='x')
+
+        # Contenedor central con scroll por si la pantalla es reducida
+        frame_scroll_ext, frame_centro = crear_scrollframe(dialogo, bg=COLOR['panel'])
+        frame_scroll_ext.pack(fill='both', expand=True, padx=12, pady=6)
+
+        campos = tk.Frame(frame_centro, bg=COLOR['panel'], padx=10, pady=6)
+        campos.pack(fill='both', expand=True)
 
         vars_config = {}
         configuracion = [
-            ('Orígenes:', 'origenes', 3, 1, 10),
-            ('Destinos:', 'destinos', 4, 1, 10),
-            ('Costo mínimo:', 'cost_min', 1, 0, 99),
-            ('Costo máximo:', 'cost_max', 20, 1, 999),
+            ('Número de Orígenes:', 'origenes', 3, 1, 15),
+            ('Número de Destinos:', 'destinos', 4, 1, 15),
+            ('Costo unitario mínimo:', 'cost_min', 1, 0, 99),
+            ('Costo unitario máximo:', 'cost_max', 20, 1, 999),
             ('Oferta mínima:', 'of_min', 10, 1, 999),
             ('Oferta máxima:', 'of_max', 100, 1, 9999),
             ('Demanda mínima:', 'dem_min', 10, 1, 999),
             ('Demanda máxima:', 'dem_max', 100, 1, 9999),
         ]
+
         for fila, (etiq, clave, default, desde, hasta) in enumerate(configuracion):
-            tk.Label(campos, text=etiq, font=FUENTE['normal'],
-                     bg=COLOR['panel'], anchor='e', width=18
-                     ).grid(row=fila, column=0, sticky='e', pady=3, padx=(0, 6))
+            tk.Label(
+                campos, text=etiq, font=FUENTE['normal'],
+                bg=COLOR['panel'], anchor='e'
+            ).grid(row=fila, column=0, sticky='e', pady=4, padx=(0, 10))
+
             var = tk.IntVar(value=default)
             vars_config[clave] = var
-            ttk.Spinbox(campos, from_=desde, to=hasta, textvariable=var,
-                        width=8).grid(row=fila, column=1, sticky='w')
+            ttk.Spinbox(
+                campos, from_=desde, to=hasta, textvariable=var,
+                width=10, font=FUENTE['normal']
+            ).grid(row=fila, column=1, sticky='w', pady=4)
+
+        campos.columnconfigure(0, weight=1)
+        campos.columnconfigure(1, weight=1)
 
         var_bal = tk.BooleanVar(value=True)
         tk.Checkbutton(
-            dialogo, text='Problema balanceado automáticamente',
+            frame_centro, text='✔ Problema balanceado automáticamente (Oferta = Demanda)',
             variable=var_bal, font=FUENTE['normal'],
-            bg=COLOR['panel'], fg=COLOR['texto']
-        ).pack(pady=6)
+            bg=COLOR['panel'], fg=COLOR['texto'], anchor='w'
+        ).pack(fill='x', padx=16, pady=8)
 
         def generar():
             try:
@@ -1447,10 +1468,18 @@ class AplicacionTransporte(tk.Tk):
             except Exception as e:
                 messagebox.showerror('Error', str(e), parent=dialogo)
 
-        ttk.Button(dialogo, text='🎲 Generar', style='Primario.TButton',
-                   command=generar).pack(pady=10)
-        ttk.Button(dialogo, text='Cancelar', style='Secundario.TButton',
-                   command=dialogo.destroy).pack()
+        # Botones de acción empaquetados en la barra inferior fija
+        btn_generar = ttk.Button(
+            frame_btns, text='🎲 GENERAR DATOS', style='Exito.TButton',
+            command=generar
+        )
+        btn_generar.pack(side='left', fill='x', expand=True, padx=(0, 8))
+
+        btn_cancelar = ttk.Button(
+            frame_btns, text='Cancelar', style='Secundario.TButton',
+            command=dialogo.destroy
+        )
+        btn_cancelar.pack(side='right', padx=(8, 0))
 
     # =========================================================================
     # Guardar, abrir, exportar
