@@ -680,6 +680,15 @@ class AplicacionTransporte(tk.Tk):
                      width=8, relief='flat', anchor='center'
                      ).grid(row=m + 1, column=j + 1, padx=1, pady=1, sticky='nsew')
 
+        # Esquina inferior derecha: Demanda \ Oferta
+        tot_dem = formatear_numero(p.demanda_total())
+        tot_of = formatear_numero(p.oferta_total())
+        tk.Label(
+            frame, text=f"{tot_dem} \\ {tot_of}",
+            font=FUENTE['pequena'], fg='white',
+            bg=COLOR['primario_oscuro'], width=10, relief='flat', anchor='center'
+        ).grid(row=m + 1, column=n + 1, padx=1, pady=1, sticky='nsew')
+
     # =========================================================================
     # Pestaña 3: Resolución paso a paso
     # =========================================================================
